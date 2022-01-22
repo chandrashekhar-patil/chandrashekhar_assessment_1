@@ -29,16 +29,16 @@ npm start
 
 List of installation commands used to download the plugins
 
-npx create-react-app assessment --template typescript
-npm i react-router-dom
-npm i react-router
-npm i react-content-loader
-npm i react-custom-scrollbars
-npm i --save-dev @types/react-custom-scrollbars
-npm install @emotion/react @emotion/styled
-npm i node-sass
-npm i reactstrap
-npm i bootstrap
+- npx create-react-app assessment --template typescript
+- npm i react-router-dom
+- npm i react-router
+- npm i react-content-loader
+- npm i react-custom-scrollbars
+- npm i --save-dev @types/react-custom-scrollbars
+- npm install @emotion/react @emotion/styled
+- npm i node-sass
+- npm i reactstrap
+- npm i bootstrap
 
 ## Deployment
 
