@@ -1,0 +1,42 @@
+image: node:12.2.0-alpine
+
+variables:
+  IMAGE: car_list
+
+stages:
+  - test
+  - build
+  - deploy
+
+run-unit-test:
+  stage: test
+  script:
+    - npm install
+    - npm run test
+
+  artifacts:
+    paths:
+      - coverage/
+  tags:
+    - shell_executor
+  only:
+    - chandrashekhar_assesment_1
+
+build:
+  stage: build
+  script:
+    - docker build -t $IMAGE .
+  tags:
+    - shell_executor
+  only:
+    - chandrashekhar_assesment_1
+
+deploy:
+  stage: deploy
+  script:
+    - docker stop $(docker ps -a | grep 'car_list' | awk '{print $1}') || true && docker rm $(docker ps -a | grep 'car_list' | awk '{print $1}') || true && docker rmi $(docker images | grep '^<none>' | awk '{print $3}') || true
+    - docker run --name=$IMAGE -dt -p 3000:3000 $IMAGE
+  tags:
+    - shell_executor
+  only:
+    - chandrashekhar_assesment_1

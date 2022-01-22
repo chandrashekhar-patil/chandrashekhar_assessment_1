@@ -1,0 +1,69 @@
+.navbar {
+  padding: 8px 2px;
+  font-family: Fira Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: capitalize;
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: #e51b2f;
+  color: #fff;
+}
+
+.navbar-toggler:focus {
+  text-decoration: none;
+  outline: 0;
+}
+
+.navbar-nav li {
+  cursor: pointer;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+  padding: 4px 8px;
+}
+
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link:hover {
+  text-shadow: 2px 4px 4px transparent, 0px -5px 10px transparent;
+  color: #dbdbdb;
+}
+
+.bg-dark {
+  background-color: #e51b2f !important;
+}
+
+.navbar.solid {
+  background: #e51b2f !important;
+}
+
+.dropdown-menu {
+  border: none;
+  border-radius: 0px;
+  font-family: Fira Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: capitalize;
+}
+
+.dropdown-item {
+  padding: 4px 8px;
+  text-transform: capitalize;
+  font-family: Fira Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: #dbdbdb;
+  background-color: #fff;
+}
