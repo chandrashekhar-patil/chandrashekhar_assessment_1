@@ -1,14 +1,17 @@
-import { useContext, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Table } from '../../components/table/Table';
 import { Context } from '../../Context';
 import { callApi } from '../../helpers/api';
 import { url } from '../../helpers/constants';
 import { columns, dataMap } from './jsons';
+import Select from 'react-select';
+import { Button } from '../../components/button/Button';
 
 export const List = () => {
   //useContext
   const { store, setStore }: any = useContext(Context) || {};
+  const [stateList, setStateList]: any = useState([]);
   const list = store?.list || [];
 
   // useState
@@ -49,6 +52,10 @@ export const List = () => {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    setStateList(list);
+  }, list);
+
   const onCellClick = (column: string, celldata: any, row: any) => {
     if (column === 'name') {
       navigate(`/details/${row['_id']}`, {});
@@ -82,21 +89,69 @@ export const List = () => {
     selectRow(rows);
   };
 
+  const getEquipments = () => {
+    let equipmentList: any = new Set([]);
+    list.forEach((item: any) => {
+      const equipments = item?.equipments || [];
+      equipments.forEach((equipment: string) => {
+        equipmentList.add(equipment);
+      });
+    });
+    const equipmentListArry = Array.from(equipmentList);
+    const arr = equipmentListArry.map((item: any) => {
+      return { label: item, value: item };
+    });
+    console.log(arr);
+    return arr;
+  };
+
+  console.log(getEquipments());
+
+  const handleDropdown = (data: any) => {
+    const value = data?.value || '';
+    let newArr = [...list];
+    let filteredArray = [];
+    if (value) {
+      filteredArray = newArr
+        .map((item: any) => {
+          const equipments = item?.equipments || [];
+          if (equipments.indexOf(value) !== -1) {
+            return item;
+          }
+          return null;
+        })
+        .filter((item: any) => item !== null);
+    }
+    // console.log(filteredArray);
+
+    setStateList(filteredArray);
+  };
+
+  const clearFilter = () => {
+    setStateList(list);
+  };
+
   const renderList = () => {
     return (
-      <Table
-        columns={columns}
-        rows={list}
-        dataMap={dataMap}
-        loading={loading}
-        loaderNos={10}
-        onCellClick={onCellClick}
-        hasCheckbox={true}
-        onHeaderSelect={onHeaderSelect}
-        onRowSelect={onRowSelect}
-        uniqueKey={'_id'}
-        selectedRows={selectedRows}
-      />
+      <Fragment>
+        <div style={{ display: 'flex', width: '100%' }}>
+          <Select options={getEquipments()} onChange={handleDropdown} />
+          <Button onClick={clearFilter} title='Clear Filter' id='clear' />
+        </div>
+        <Table
+          columns={columns}
+          rows={stateList}
+          dataMap={dataMap}
+          loading={loading}
+          loaderNos={10}
+          onCellClick={onCellClick}
+          hasCheckbox={true}
+          onHeaderSelect={onHeaderSelect}
+          onRowSelect={onRowSelect}
+          uniqueKey={'_id'}
+          selectedRows={selectedRows}
+        />
+      </Fragment>
     );
   };
 

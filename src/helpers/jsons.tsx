@@ -23,6 +23,13 @@ export const list = [
     color: 'red',
     price: '11.26 Lakh',
     imageUri: 'all-new-city.jpg',
+    equipments: [
+      'nav-system',
+      'digital-radium',
+      'park-assistant',
+      'apple-carplay',
+      'android-carplay',
+    ],
   },
   {
     _id: '1002',
@@ -32,6 +39,12 @@ export const list = [
     color: 'black',
     price: '15.18 Lakh',
     imageUri: 'city.png',
+    equipments: [
+      'nav-system',
+      'digital-radium',
+      'apple-carplay',
+      'android-carplay',
+    ],
   },
   {
     _id: '1003',
@@ -41,6 +54,7 @@ export const list = [
     color: 'grey',
     price: '6.38 Lakh',
     imageUri: 'new-honda-amaze.png',
+    equipments: ['digital-radium', 'apple-carplay', 'android-carplay'],
   },
   {
     _id: '1004',
@@ -50,6 +64,12 @@ export const list = [
     color: 'white',
     price: '7.71 Lakh',
     imageUri: 'new-jazz.png',
+    equipments: [
+      'digital-radium',
+      'apple-carplay',
+      'android-carplay',
+      'park-assistant',
+    ],
   },
   {
     _id: '1005',
